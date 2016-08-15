@@ -57,12 +57,12 @@ class Contact
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by(first_name)
+  def self.find_by(attribute,value)
     @@contacts.each do |c|
-      return c if first_name == c.first_name
-      return c if last_name == c.last_name
-      return c if email == c.email
-      return c if note == c.note
+      return c if value == c.first_name
+      return c if value == c.last_name
+      return c if value == c.email
+      return c if value == c.note
     end
 
   end
@@ -85,5 +85,5 @@ class Contact
 
 
   # Feel free to add other methods here, if you need them.
-# Contact.create("V","V","V","V")
-# Contact.create("S","S","S","S")
+contact1 = Contact.new("V","V","V","V")
+contact2 = Contact.new("S","S","S","S")

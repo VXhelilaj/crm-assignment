@@ -77,24 +77,35 @@ class CRM
 
   # This method should accept as an argument an array of contacts
   # and display each contact in that array
-  def display_contacts
-    contact_array.each do |c|
+  def display_contacts(array)
+    array.each do |c|
     puts "First Name: #{c.first_name}"
     puts "Last Name: #{c.last_name}"
     puts "Email: #{c.email}"
-    puts "Notes: #{c.notes}"
+    puts "Notes: #{c.note}"
     # HINT: Make use of this method in the display_all_contacts and search_by_attribute methods to keep your code DRY
   end
+end
 
   def display_all_contacts
-    display_contacts(Contacts.all)
+    display_contacts(Contact.all)
     # HINT: Make use of the display_contacts method to keep your code DRY
   end
 
   def search_by_attribute
 
+    copied_contact = []
+
+    print "Which attribute would you'd like to change?"
+    attribute = gets.chomp
+
+    print "What's the value of the attribute you'd like to change?"
+    value = gets.chomp
+    copied_contact << (Contact.find_by(attribute, value))
+    display_contacts(copied_contact)
     # HINT: Make use of the display_contacts method to keep your code DRY
   end
+end
+
 
   # Add other methods here, if you need them.
-end
