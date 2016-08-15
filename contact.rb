@@ -22,7 +22,7 @@ class Contact
   # store the newly created contact, and then return it
   def self.create(first_name, last_name, email, note)
     new_contact = Contact.new(first_name, last_name, email, note)
-    @@contacts << new_contact
+    @@contacts
     return new_contact
   end
 
@@ -46,10 +46,10 @@ class Contact
   # and then make the appropriate change to the contact
   def update(attribute, new_value)
     case attribute
-    when "first name" then self.first_name = new_value
-    when "last name" then self.last_name = new_value
-    when "email" then self.email = new_value
-    when "note" then self.note = new_value
+    when "first_name" then @first_name = new_value
+    when "last_name" then @last_name = new_value
+    when "email" then @email = new_value
+    when "note" then @note = new_value
    end
   end
 
@@ -60,6 +60,9 @@ class Contact
   def self.find_by(first_name)
     @@contacts.each do |c|
       return c if first_name == c.first_name
+      return c if last_name == c.last_name
+      return c if email == c.email
+      return c if note == c.note
     end
 
   end
@@ -82,3 +85,5 @@ class Contact
 
 
   # Feel free to add other methods here, if you need them.
+# Contact.create("V","V","V","V")
+# Contact.create("S","S","S","S")
